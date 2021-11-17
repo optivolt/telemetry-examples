@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from serial import Serial
+import argparse
 import struct
 import time
 
@@ -81,8 +82,12 @@ class OptvController:
         self.disconnect()
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='Prints telemetry data in a loop')
+    parser.add_argument('--device', '-d', type=str, help='path to serial device file')
+    args = parser.parse_args()
+
     solar_panel = OptvController()
-    solar_panel.connect('/dev/cu.usbmodem144301')
+    solar_panel.connect(args.device)
 
     print("serial number: ", solar_panel.serial_number)
 
