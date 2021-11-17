@@ -36,7 +36,7 @@ class OptvController:
             self._inst = Serial(port, SERIAL_BAUD_RATE, timeout=SERIAL_TIMEOUT)
 
         # load constants into local vars
-        sn = spin_fetch(self._inst, GET_DEV_INFO, 6)
+        sn = spin_fetch(self._inst, GET_DEV_INFO, 10)
         self._sn = struct.unpack('<LL', sn[1:-1])[0]
 
     def disconnect(self):
